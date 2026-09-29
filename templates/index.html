@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block contenu %}
+<h1>Meet Foot</h1>
+<p>Choisis ton type de compte :</p>
+<a class="bouton" href="{{ url_for('inscription_club') }}">Compte Club</a>
+<a class="bouton" href="{{ url_for('inscription_particulier') }}">Compte Particulier</a>
+<p><br><a href="{{ url_for('login') }}">Deja un compte? Se connecter</a></p>
+{% endblock %}
