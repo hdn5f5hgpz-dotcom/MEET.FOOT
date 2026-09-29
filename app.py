@@ -32,7 +32,22 @@ def load_user(user_id):
 def index():
     if current_user.is_authenticated:
         return redirect(url_for('accueil'))
-    return render_template('index.html')
+    # FIX: pas besoin de template, on affiche direct
+    return '''
+    <!doctype html>
+    <html><head><meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Meet Foot Danané</title></head>
+    <body style="font-family:sans-serif;text-align:center;padding:30px;background:#0f172a;color:white">
+    <h1 style="font-size:32px">⚽ MEET FOOT DANANÉ</h1>
+    <p>Plateforme multi-sport de Danané</p>
+    <div style="margin-top:30px">
+    <a href="/login" style="background:#22c55e;color:white;padding:12px 24px;border-radius:8px;text-decoration:none;margin:5px;display:inline-block">Connexion</a>
+    <a href="/inscription_particulier" style="background:#3b82f6;color:white;padding:12px 24px;border-radius:8px;text-decoration:none;margin:5px;display:inline-block">Inscription Joueur</a>
+    <a href="/inscription_club" style="background:#f59e0b;color:white;padding:12px 24px;border-radius:8px;text-decoration:none;margin:5px;display:inline-block">Club</a>
+    </div>
+    <p style="margin-top:40px;opacity:0.6">Site en ligne ✅</p>
+    </body></html>
+    '''
 
 @app.route('/accueil', methods=['GET', 'POST'])
 @login_required
