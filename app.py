@@ -27,6 +27,9 @@ def create_app():
     
     # Init DB
     db.init_app(app)
+
+with app.app_context():
+    db.create_all()
     
     # Logging pro
     logging.basicConfig(level=logging.INFO)
