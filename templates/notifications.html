@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block contenu %}
+<h1>Notifications</h1>
+{% for notif in notifications %}
+<div style="background:white;padding:10px;margin-bottom:8px;border-radius:6px;">
+<p>{{ notif.texte }}</p><small>{{ notif.date_notification }}</small><br><a href="{{ notif.lien }}">Voir</a>
+</div>
+{% else %}<p>Aucune notification</p>{% endfor %}
+{% endblock %}
