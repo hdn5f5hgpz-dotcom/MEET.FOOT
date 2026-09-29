@@ -1,8 +1,36 @@
 {% extends "base.html" %}
-{% block contenu %}
-<h1>Meet Foot</h1>
-<p>Choisis ton type de compte :</p>
-<a class="bouton" href="{{ url_for('inscription_club') }}">Compte Club</a>
-<a class="bouton" href="{{ url_for('inscription_particulier') }}">Compte Particulier</a>
-<p><br><a href="{{ url_for('login') }}">Deja un compte? Se connecter</a></p>
+{% block content %}
+<div class="grid md:grid-cols-2 gap-12 items-center min-h-[80vh]">
+    <div>
+        <div class="inline-flex items-center gap-2 bg-white/10 border border-white/10 rounded-full px-3 py-1 text-xs mb-6">
+            <span class="w-2 h-2 bg-primary rounded-full animate-pulse"></span> +12 450 joueurs connectes
+        </div>
+        <h1 class="font-display text-6xl md:text-8xl leading-none">LE FOOT<br>SE JOUE<br><span class="text-primary">ICI.</span></h1>
+        <p class="text-white/60 mt-6 text-lg leading-relaxed max-w-md">Le premier reseau social 100% foot. Clubs, joueurs, scouts, agents. Trouve ton equipe, montre ton talent.</p>
+        <div class="flex gap-3 mt-8">
+            <a href="{{ url_for('inscription_particulier') }}" class="px-8 py-4 bg-primary text-black font-bold rounded-full hover:scale-105 transition">Je suis Joueur</a>
+            <a href="{{ url_for('inscription_club') }}" class="px-8 py-4 bg-white text-black font-bold rounded-full hover:scale-105 transition">Je suis un Club</a>
+        </div>
+        <div class="flex items-center gap-6 mt-10">
+            <div class="flex -space-x-3">
+                <div class="w-10 h-10 rounded-full bg-zinc-700 border-2 border-black"></div>
+                <div class="w-10 h-10 rounded-full bg-zinc-600 border-2 border-black"></div>
+                <div class="w-10 h-10 rounded-full bg-primary border-2 border-black flex items-center justify-center text-black font-bold text-xs">+12k</div>
+            </div>
+            <div class="text-sm text-white/60">Rejoins la communaute<br><span class="text-white font-semibold">Danane, Abidjan, Paris...</span></div>
+        </div>
+    </div>
+    <div class="relative hidden md:block">
+        <div class="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent rounded-[2rem] blur-2xl"></div>
+        <div class="relative bg-card border border-white/10 rounded-[2rem] p-6">
+            <div class="flex items-center justify-between mb-6">
+                <div class="flex items-center gap-3"><div class="w-10 h-10 bg-primary rounded-full"></div><div><p class="font-bold">Kylian M.</p><p class="text-xs text-white/50">Attaquant - 19 ans</p></div></div>
+                <span class="bg-primary text-black text-xs font-bold px-3 py-1 rounded-full">DISPONIBLE</span>
+            </div>
+            <div class="aspect-[4/3] bg-zinc-900 rounded-2xl mb-4 flex items-center justify-center"><i class="fa-solid fa-futbol text-6xl text-white/10"></i></div>
+            <p class="font-semibold">But hier contre Africa Sport. Objectif pro! Qui me scout?</p>
+            <div class="flex gap-6 mt-4 text-white/40 text-sm"><span><i class="fa-solid fa-heart text-red-500"></i> 324</span><span><i class="fa-solid fa-comment"></i> 42</span></div>
+        </div>
+    </div>
+</div>
 {% endblock %}
