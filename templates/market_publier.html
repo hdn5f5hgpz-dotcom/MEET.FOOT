@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block contenu %}
+<h1>Publier sur Market</h1>
+<form method="POST" enctype="multipart/form-data">
+<label>Photo</label><input type="file" name="photo">
+{% if type_compte=="club" %}
+<input name="nom_joueur" placeholder="Nom joueur" required><input name="poste" placeholder="Poste" required><input name="age" placeholder="Age" required><input name="prix" placeholder="Prix">
+{% else %}
+<textarea name="texte_recherche" placeholder="Ce que tu recherches..." required></textarea>
+{% endif %}
+<button>Publier</button>
+</form>
+{% endblock %}
