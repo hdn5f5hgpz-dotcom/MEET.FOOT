@@ -1300,7 +1300,7 @@ def lister_annonces_market():
 
     {% if actif %}
         <p style="color:#2e7d32; font-weight:bold;">
-            ✅ Ton abonnement est actif (payé via {{ moyen_actuel }}).
+             Ton abonnement est actif (payé via {{ moyen_actuel }}).
         </p>
         <form method="POST">
             <input type="hidden" name="action" value="resilier">
@@ -1309,7 +1309,7 @@ def lister_annonces_market():
 
     {% else %}
         <p style="color:#c62828; font-weight:bold;">
-            ⚠️ Ton abonnement n'est pas à jour. Choisis un moyen de paiement
+            Ton abonnement n'est pas à jour. Choisis un moyen de paiement
             pour continuer à utiliser l'application.
         </p>
 
@@ -1432,7 +1432,7 @@ def lister_annonces_market():
     {% endif %}
 
     <p style="text-align:center;">
-        <a class="bouton" href="{{ url_for('parametres') }}">⚙️ Paramètres</a>
+        <a class="bouton" href="{{ url_for('parametres') }}"> Paramètres</a>
     </p>
 
     <h2>Mes publications</h2>
@@ -1444,7 +1444,7 @@ def lister_annonces_market():
     {% for post in mes_posts %}
         <div style="background:white; padding:14px; border-radius:8px; margin-bottom:14px;">
             <span style="font-size:11px; color:#888;">
-                {{ "🌍 Public" if post.visibilite == "public" else "🔒 Privé" }} · {{ post.date_publication }}
+                {{ "Public" if post.visibilite == "public" else "Privé" }} · {{ post.date_publication }}
             </span>
 
             {% if post.contenu_texte %}
@@ -1465,7 +1465,7 @@ def lister_annonces_market():
 
             <form method="POST" action="{{ url_for('basculer_visibilite_post', post_id=post.id) }}" style="margin-top:8px;">
                 <button type="submit" style="background:#555;">
-                    {{ "🔒 Rendre privé" if post.visibilite == "public" else "🌍 Rendre public" }}
+                    {{ "Rendre privé" if post.visibilite == "public" else "Rendre public" }}
                 </button>
             </form>
         </div>
@@ -1557,15 +1557,15 @@ Les autres pages viennent s'insérer dans le bloc "contenu" ci-dessous.
 
     {% if session.get("email") and abonnement_ok %}
     <div class="nav-bas">
-        <a href="{{ url_for('accueil') }}">🏠<br>Accueil</a>
+        <a href="{{ url_for('accueil') }}"><br>Accueil</a>
         <a href="{{ url_for('notifications') }}">
-            🔔{% if nb_notifs_non_lues > 0 %}<span class="pastille">{{ nb_notifs_non_lues }}</span>{% endif %}
+            {% if nb_notifs_non_lues > 0 %}<span class="pastille">{{ nb_notifs_non_lues }}</span>{% endif %}
             <br>Notif
         </a>
-        <a href="{{ url_for('creer') }}">➕<br>Créer</a>
-        <a href="{{ url_for('messagerie') }}">💬<br>Messages</a>
-        <a href="{{ url_for('market') }}">🛒<br>Market</a>
-        <a href="{{ url_for('profil') }}">👤<br>Profil</a>
+        <a href="{{ url_for('creer') }}"><br>Créer</a>
+        <a href="{{ url_for('messagerie') }}"><br>Messages</a>
+        <a href="{{ url_for('market') }}"><br>Market</a>
+        <a href="{{ url_for('profil') }}"><br>Profil</a>
     </div>
     {% endif %}
 
@@ -1630,7 +1630,7 @@ c'est ta base de données (tous les comptes et contenus y sont stockés).
   son abonnement mensuel (1700Fr pour un Club, 750Fr pour un Particulier),
   via Wave, Moov Money ou MTN Money. Sans abonnement actif, impossible
   d'accéder à un onglet de l'appli.
-  ⚠️ Le paiement est **simulé** (pas de connexion internet dans cet
+  Le paiement est **simulé** (pas de connexion internet dans cet
   environnement de test) : pour un vrai lancement, il faudra brancher
   l'API du fournisseur choisi à la place de la fonction
   `activer_abonnement()` dans `models.py`.
