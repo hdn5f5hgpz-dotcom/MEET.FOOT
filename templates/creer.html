@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block contenu %}
+<h1>Creer une publication</h1>
+<form method="POST" enctype="multipart/form-data">
+<textarea name="contenu_texte" placeholder="Texte..."></textarea>
+<label>Photo / Video</label><input type="file" name="media">
+<label>Visibilite</label><select name="visibilite"><option value="public">Public</option><option value="prive">Prive</option></select>
+<button>Publier</button>
+</form>
+{% endblock %}
