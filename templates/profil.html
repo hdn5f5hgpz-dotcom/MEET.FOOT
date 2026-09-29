@@ -1,13 +1,20 @@
 {% extends "base.html" %}
-{% block contenu %}
-<h1>{{ compte.nom_club if type_compte=="club" else compte.prenoms + " " + compte.nom }}</h1>
-<p style="text-align:center;"><a class="bouton" href="{{ url_for('parametres') }}">Parametres</a></p>
-<h2>Mes publications</h2>
-{% for post in mes_posts %}
-<div style="background:white;padding:14px;border-radius:8px;margin-bottom:14px;">
-<span style="font-size:11px;color:#888;">{{ post.visibilite }} - {{ post.date_publication }}</span>
-{% if post.contenu_texte %}<p>{{ post.contenu_texte }}</p>{% endif %}
-<form method="POST" action="{{ url_for('basculer_visibilite_post', post_id=post.id) }}"><button style="background:#555;">Changer visibilite</button></form>
+{% block content %}
+<div class="max-w-4xl mx-auto">
+    <div class="bg-card border border-white/10 rounded-[2rem] p-8">
+        <div class="flex gap-6">
+            <div class="w-24 h-24 rounded-full bg-gradient-to-br from-primary to-green-600 flex items-center justify-center text-black font-bold text-3xl">{{ user.username[0].upper() }}</div>
+            <div class="flex-1">
+                <h1 class="font-display text-4xl">{{ user.username }}</h1>
+                <p class="text-primary font-bold text-sm">{{ user.type_compte|upper }} • {{ user.ville or 'Danane' }}</p>
+                <p class="text-white/60 text-sm mt-3 max-w-lg">{{ user.bio or 'Pas de bio pour l instant. Clique sur Modifier.' }}</p>
+                <div class="flex gap-6 mt-4 text-sm"><span><b>{{ posts|length }}</b> <span class="text-white/40">posts</span></span><span><b>0</b> <span class="text-white/40">abonnees</span></span></div>
+            </div>
+            <a href="{{ url_for('modifier_profil') }}" class="h-fit bg-white text-black px-5 py-2 rounded-full font-bold text-sm">Modifier</a>
+        </div>
+    </div>
+    <div class="grid md:grid-cols-3 gap-3 mt-6">
+        {% for post in posts %}<div class="aspect-square bg-card border border-white/10 rounded-2xl p-4"><p class="text-sm line-clamp-6">{{ post.contenu }}</p></div>{% endfor %}
+    </div>
 </div>
-{% endfor %}
 {% endblock %}
