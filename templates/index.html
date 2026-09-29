@@ -1,26 +1,13 @@
-{% extends "base.html" %}
-{% block content %}
-<div class="grid md:grid-cols-2 gap-12 items-center min-h-[80vh]">
-    <div>
-        <div class="inline-flex items-center gap-2 bg-white/10 border border-white/10 rounded-full px-3 py-1 text-xs mb-6">
-            <span class="w-2 h-2 bg-[#00FF88] rounded-full animate-pulse"></span> FOOT • BASKET • HANDBALL
-        </div>
-        <h1 class="font-display text-6xl md:text-[5.5rem] leading-[0.9]">LE JEU<br>COMMENCE<br><span class="text-[#00FF88]">ICI.</span></h1>
-        <p class="text-white/60 mt-6 text-lg leading-relaxed max-w-md">Le premier reseau 100% sport de Danane. Joueurs, clubs, coachs. Trouve ton equipe, montre ton talent.</p>
-
-        <div class="flex gap-2 mt-6">
-            <span class="px-3 py-1.5 bg-white/10 rounded-full text-xs font-bold flex items-center gap-1.5"><i class="fa-solid fa-futbol text-white/40"></i> FOOT</span>
-            <span class="px-3 py-1.5 bg-white/10 rounded-full text-xs font-bold flex items-center gap-1.5"><i class="fa-solid fa-basketball text-white/40"></i> BASKET</span>
-            <span class="px-3 py-1.5 bg-white/10 rounded-full text-xs font-bold flex items-center gap-1.5"><i class="fa-solid fa-baseball text-white/40"></i> HANDBALL</span>
-        </div>
-
-        <div class="flex gap-3 mt-8">
-            <a href="{{ url_for('inscription_particulier') }}" class="px-8 py-4 bg-[#00FF88] text-black font-bold rounded-full hover:scale-105 transition">Je suis Joueur</a>
-            <a href="{{ url_for('inscription_club') }}" class="px-8 py-4 bg-white text-black font-bold rounded-full hover:scale-105 transition">Je suis un Club</a>
-        </div>
-
-        <div class="flex items-center gap-6 mt-10">
-            <div class="flex -space-x-3">
-                <div class="w-10 h-10 rounded-full bg-zinc-700 border-2 border-black"></div>
-                <div class="w-10 h-10 rounded-full bg-zinc-600 border-2 border-black"></div>
-                <div class="w-10 h-10 rounded-full bg-[#00FF88] border-2 border-black flex items-center justify-center text-black font-bold text-xs">+12
+<!doctype html>
+<html><head><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Meet Foot</title></head>
+<body style="font-family:sans-serif;text-align:center;padding:30px;background:#0f172a;color:white">
+<h1 style="font-size:32px">⚽ MEET FOOT</h1>
+<p>Plateforme multi-sport</p>
+<div style="margin-top:30px">
+<a href="/login" style="background:#22c55e;color:white;padding:12px 24px;border-radius:8px;text-decoration:none;margin:5px;display:inline-block">Connexion</a>
+<a href="/inscription_particulier" style="background:#3b82f6;color:white;padding:12px 24px;border-radius:8px;text-decoration:none;margin:5px;display:inline-block">Inscription Joueur</a>
+<a href="/inscription_club" style="background:#f59e0b;color:white;padding:12px 24px;border-radius:8px;text-decoration:none;margin:5px;display:inline-block">Club</a>
+</div>
+<p style="margin-top:40px;opacity:0.6">Site en ligne ✅</p>
+</body></html>
