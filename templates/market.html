@@ -1,11 +1,19 @@
 {% extends "base.html" %}
-{% block contenu %}
-<h1>Market</h1>
-{% if peut_publier %}<a class="bouton" href="{{ url_for('market_publier') }}">Publier une annonce</a>{% endif %}<hr>
-{% for a in annonces %}
-<div style="background:white;padding:12px;margin-bottom:10px;border-radius:8px;">
-<b>{{ a.nom_affiche }}</b> - {{ a.categorie }}<br><small>{{ a.description }}</small>{% if a.prix %}<br><b>{{ a.prix }}</b>{% endif %}
-<br><a class="bouton" href="{{ url_for('conversation', autre_email=a.auteur_email) }}">Contacter</a>
+{% block content %}
+<div class="max-w-5xl mx-auto">
+    <div class="flex items-center justify-between mb-6">
+        <h1 class="font-display text-5xl">MARKET<span class="text-primary">.FOOT</span></h1>
+        <a href="{{ url_for('market_publier') }}" class="bg-primary text-black font-bold px-6 py-3 rounded-full text-sm"><i class="fa-solid fa-plus mr-2"></i>Vendre</a>
+    </div>
+    <div class="grid md:grid-cols-3 gap-4">
+        {% for item in items %}
+        <div class="bg-card border border-white/10 rounded-2xl overflow-hidden">
+            <div class="aspect-square bg-zinc-900">{% if item.image_url %}<img src="{{ item.image_url }}" class="w-full h-full object-cover">{% else %}<div class="w-full h-full flex items-center justify-center text-white/10 text-4xl"><i class="fa-solid fa-image"></i></div>{% endif %}</div>
+            <div class="p-4"><p class="font-bold">{{ item.titre }}</p><p class="text-sm text-white/50 line-clamp-2">{{ item.description }}</p><p class="text-primary font-bold mt-2">{% if item.prix %}{{ item.prix }} FCFA{% else %}Sur demande{% endif %}</p></div>
+        </div>
+        {% else %}
+        <div class="col-span-3 text-center py-16 border-dashed border-white/10 rounded-2xl text-white/30">Aucune annonce. Sois le premier a publier!</div>
+        {% endfor %}
+    </div>
 </div>
-{% endfor %}
 {% endblock %}
