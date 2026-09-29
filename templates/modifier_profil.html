@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block contenu %}
+<h1>Modifier profil</h1>
+<form method="POST">
+{% if type_compte=="club" %}
+<input name="nom_club" value="{{ compte.nom_club }}" required><input name="logo_url" value="{{ compte.logo_url }}"><input name="pays" value="{{ compte.pays }}" required><input name="ligue" value="{{ compte.ligue }}">
+{% else %}
+<input name="nom" value="{{ compte.nom }}" required><input name="prenoms" value="{{ compte.prenoms }}" required><input name="nationalite" value="{{ compte.nationalite }}" required><input name="poste" value="{{ compte.poste }}">
+{% endif %}
+<button>Enregistrer</button>
+</form>
+{% endblock %}
