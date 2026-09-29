@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block contenu %}
+<h1>Langue</h1>
+<p>Actuelle : {{ langue_actuelle }}</p>
+<form method="POST">
+<select name="langue"><option>Francais</option><option>English</option></select>
+<button>Changer</button>
+</form>
+{% endblock %}
