@@ -1,10 +1,14 @@
 {% extends "base.html" %}
-{% block contenu %}
-<h1>Messagerie</h1>
-<a class="bouton" href="{{ url_for('nouvelle_conversation') }}">Nouvelle conversation</a><hr>
-{% for conv in conversations %}
-<div style="background:white;padding:10px;margin-bottom:8px;border-radius:6px;">
-<a href="{{ url_for('conversation', autre_email=conv.email) }}"><b>{{ conv.nom }}</b></a><br><small>{{ conv.dernier_message }}</small>
+{% block content %}
+<div class="max-w-4xl mx-auto bg-card border border-white/10 rounded-[2rem] overflow-hidden min-h-[70vh] flex">
+    <div class="w-full md:w-[320px] border-r border-white/10">
+        <div class="p-5 flex justify-between items-center"><h2 class="font-bold">Messages</h2><a href="{{ url_for('nouvelle_conversation') }}" class="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-black"><i class="fa-solid fa-pen"></i></a></div>
+        <div class="space-y-1">
+            {% for c in conversations %}
+            <a href="{{ url_for('conversation', conv_id=c.conv.id if c.conv is defined else c.id) }}" class="flex gap-3 p-4 hover:bg-white/5"><div class="w-10 h-10 bg-zinc-800 rounded-full flex items-center justify-center font-bold">{{ c.other.username[0].upper() if c.other else 'U' }}</div><div><p class="font-semibold text-sm">{{ c.other.username if c.other else 'Utilisateur' }}</p><p class="text-xs text-white/40 truncate w-40">{{ c.last_msg.contenu if c.last_msg else 'Nouvelle conversation' }}</p></div></a>
+            {% else %}<p class="text-center text-white/30 text-sm py-10">Pas de conversations</p>{% endfor %}
+        </div>
+    </div>
+    <div class="hidden md:flex flex-1 items-center justify-center text-white/20"><p>Selectionne une conversation</p></div>
 </div>
-{% else %}<p>Aucune conversation</p>{% endfor %}
 {% endblock %}
