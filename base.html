@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Meet Foot</title>
+    <style>
+        body{font-family:Arial,sans-serif;margin:0;padding-bottom:70px;background:#f2f2f2}
+        .contenu{max-width:500px;margin:0 auto;padding:20px}
+        input,select{width:100%;padding:10px;margin:6px 0 14px 0;border:1px solid #ccc;border-radius:6px}
+        label{font-weight:bold}
+        button,.bouton{background:#2e7d32;color:white;border:none;padding:12px 20px;border-radius:6px;cursor:pointer}
+        .nav-bas{position:fixed;bottom:0;left:0;right:0;background:white;display:flex;justify-content:space-around;border-top:1px solid #ddd;padding:10px 0}
+        .nav-bas a{text-decoration:none;color:#333;font-size:13px}
+    </style>
+</head>
+<body>
+    <div class="contenu">{% block contenu %}{% endblock %}</div>
+    {% if session.get("email") and abonnement_ok %}
+    <div class="nav-bas">
+        <a href="{{ url_for('accueil') }}">Accueil</a>
+        <a href="{{ url_for('notifications') }}">Notif</a>
+        <a href="{{ url_for('creer') }}">Creer</a>
+        <a href="{{ url_for('messagerie') }}">Messages</a>
+        <a href="{{ url_for('market') }}">Market</a>
+        <a href="{{ url_for('profil') }}">Profil</a>
+    </div>
+    {% endif %}
+</body>
+</html>
