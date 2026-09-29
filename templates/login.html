@@ -1,10 +1,15 @@
-{% extends "base.html" %}
-{% block contenu %}
-<h1>Connexion</h1>
-{% if erreur %}<p style="color:red;">{{ erreur }}</p>{% endif %}
-<form method="POST">
-<label>Email</label><input type="email" name="email" required>
-<label>Mot de passe</label><input type="password" name="mot_de_passe" required>
-<button>Se connecter</button>
-</form>
+ {% extends "base.html" %}
+{% block content %}
+<div class="min-h-[70vh] flex items-center justify-center">
+    <div class="w-full max-w-sm bg-card border border-white/10 rounded-[2rem] p-8">
+        <h1 class="font-display text-4xl text-center">CONNEXION</h1>
+        <p class="text-center text-white/40 text-sm mt-2">Content de te revoir</p>
+        <form method="POST" class="mt-8 space-y-4">
+            <input name="username" placeholder="Pseudo ou email" class="w-full bg-zinc-900 border border-white/10 rounded-full px-5 py-3.5 text-sm focus:border-primary outline-none" required>
+            <input name="password" type="password" placeholder="Mot de passe" class="w-full bg-zinc-900 border border-white/10 rounded-full px-5 py-3.5 text-sm focus:border-primary outline-none" required>
+            <button class="w-full bg-primary text-black font-bold py-3.5 rounded-full hover:scale-[1.02] transition">Se connecter</button>
+        </form>
+        <p class="text-center text-sm text-white/40 mt-6">Pas de compte? <a href="{{ url_for('inscription_particulier') }}" class="text-primary font-bold">S'inscrire</a></p>
+    </div>
+</div>
 {% endblock %}
