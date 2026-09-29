@@ -9,26 +9,18 @@
         <p class="text-white/60 mt-6 text-lg leading-relaxed max-w-md">Le premier reseau 100% sport de Danane. Joueurs, clubs, coachs. Trouve ton equipe, montre ton talent.</p>
 
         <div class="flex gap-2 mt-6">
-            <span class="px-3 py-1.5 bg-white/10 rounded-full text-xs font-bold"><i class="fa-solid fa-futbol mr-1"></i>FOOT</span>
-            <span class="px-3 py-1.5 bg-white/10 rounded-full text-xs font-bold"><i class="fa-solid fa-basketball mr-1"></i>BASKET</span>
-            <span class="px-3 py-1.5 bg-white/10 rounded-full text-xs font-bold">🤾 HANDBALL</span>
+            <span class="px-3 py-1.5 bg-white/10 rounded-full text-xs font-bold flex items-center gap-1.5"><i class="fa-solid fa-futbol text-white/40"></i> FOOT</span>
+            <span class="px-3 py-1.5 bg-white/10 rounded-full text-xs font-bold flex items-center gap-1.5"><i class="fa-solid fa-basketball text-white/40"></i> BASKET</span>
+            <span class="px-3 py-1.5 bg-white/10 rounded-full text-xs font-bold flex items-center gap-1.5"><i class="fa-solid fa-baseball text-white/40"></i> HANDBALL</span>
         </div>
 
         <div class="flex gap-3 mt-8">
             <a href="{{ url_for('inscription_particulier') }}" class="px-8 py-4 bg-[#00FF88] text-black font-bold rounded-full hover:scale-105 transition">Je suis Joueur</a>
             <a href="{{ url_for('inscription_club') }}" class="px-8 py-4 bg-white text-black font-bold rounded-full hover:scale-105 transition">Je suis un Club</a>
         </div>
-    </div>
-    <div class="relative hidden md:block">
-        <div class="absolute inset-0 bg-gradient-to-tr from-[#00FF88]/20 to-transparent rounded-[2rem] blur-2xl"></div>
-        <div class="relative bg-[#161616] border border-white/10 rounded-[2rem] p-6">
-            <div class="flex items-center justify-between mb-6">
-                <div class="flex items-center gap-3"><div class="w-10 h-10 bg-[#00FF88] rounded-full"></div><div><p class="font-bold">Coulibaly A.</p><p class="text-xs text-white/50">Basket - Meneur - 19 ans</p></div></div>
-                <span class="bg-[#00FF88] text-black text-xs font-bold px-3 py-1 rounded-full">DISPONIBLE</span>
-            </div>
-            <div class="aspect-[4/3] bg-zinc-900 rounded-2xl mb-4 flex items-center justify-center gap-6 text-5xl"><i class="fa-solid fa-futbol text-white/10"></i><i class="fa-solid fa-basketball text-white/20"></i></div>
-            <p class="font-semibold">Triple-double hier! Cherche club D1 Abidjan.</p>
-        </div>
-    </div>
-</div>
-{% endblock %}
+
+        <div class="flex items-center gap-6 mt-10">
+            <div class="flex -space-x-3">
+                <div class="w-10 h-10 rounded-full bg-zinc-700 border-2 border-black"></div>
+                <div class="w-10 h-10 rounded-full bg-zinc-600 border-2 border-black"></div>
+                <div class="w-10 h-10 rounded-full bg-[#00FF88] border-2 border-black flex items-center justify-center text-black font-bold text-xs">+12
