@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block contenu %}
+<h1>Inscription Particulier</h1>
+<form method="POST">
+<label>Nom</label><input name="nom" required>
+<label>Prenoms</label><input name="prenoms" required>
+<label>Date de naissance</label><input type="date" name="date_naissance" required>
+<label>Nationalite</label><input name="nationalite" required>
+<label>Profession</label><select name="profession" required><option>Joueur</option><option>Agent</option><option>Coach</option></select>
+<label>Sport</label><select name="sport" required><option>Football</option><option>Handball</option><option>Basketball</option></select>
+<label>Poste (si Joueur)</label><input name="poste">
+<label>Email</label><input type="email" name="email" required>
+<label>Mot de passe</label><input type="password" name="mot_de_passe" required>
+<button>S'inscrire</button>
+</form>
+{% endblock %}
