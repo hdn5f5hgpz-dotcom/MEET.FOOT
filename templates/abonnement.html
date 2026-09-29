@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block contenu %}
+<h1>Abonnement</h1>
+<p>Payant : <strong>{{ prix }}Fr / mois</strong></p>
+{% if actif %}
+<p style="color:#2e7d32;font-weight:bold;">Ton abonnement est actif (paye via {{ moyen_actuel }}).</p>
+<form method="POST"><input type="hidden" name="action" value="resilier"><button style="background:#c62828;">Resilier</button></form>
+{% else %}
+<p style="color:#c62828;font-weight:bold;">Ton abonnement n'est pas a jour.</p>
+<form method="POST">
+<select name="moyen_paiement" required>{% for moyen in moyens %}<option value="{{ moyen }}">{{ moyen }}</option>{% endfor %}</select>
+<button>Payer {{ prix }}Fr et activer</button>
+</form>
+{% endif %}
+{% endblock %}
