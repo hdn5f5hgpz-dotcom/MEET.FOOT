@@ -1294,7 +1294,7 @@ def lister_annonces_market():
     <h1>Abonnement</h1>
 
     <p>
-        L'application Meet Foot est payante :
+      "L'application Meet Foot est payante :"
         <strong>{{ prix }}Fr / mois</strong> pour ton type de compte.
     </p>
 
