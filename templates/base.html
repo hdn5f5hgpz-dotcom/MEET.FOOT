@@ -2,27 +2,74 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Meet Foot</title>
-    <style>
-        body{font-family:Arial,sans-serif;margin:0;padding-bottom:70px;background:#f2f2f2}
-        .contenu{max-width:500px;margin:0 auto;padding:20px}
-        input,select{width:100%;padding:10px;margin:6px 0 14px 0;border:1px solid #ccc;border-radius:6px}
-        label{font-weight:bold}
-        button,.bouton{background:#2e7d32;color:white;border:none;padding:12px 20px;border-radius:6px;cursor:pointer}
-        .nav-bas{position:fixed;bottom:0;left:0;right:0;background:white;display:flex;justify-content:space-around;border-top:1px solid #ddd;padding:10px 0}
-        .nav-bas a{text-decoration:none;color:#333;font-size:13px}
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}MEET.FOOT - Le reseau des footeux{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'], display: ['Bebas Neue', 'sans-serif'] },
+                    colors: { primary: '#00FF88', dark: '#0A0A0A', card: '#161616' }
+                }
+            }
+        }
+    </script>
+    <style> body{ background:#080808; }.glass{ backdrop-filter:blur(20px); background:rgba(22,22,22,0.8); } </style>
 </head>
-<body>
-    <div class="contenu">{% block contenu %}{% endblock %}</div>
-    {% if session.get("email") and abonnement_ok %}
-    <div class="nav-bas">
-        <a href="{{ url_for('accueil') }}">Accueil</a>
-        <a href="{{ url_for('notifications') }}">Notif</a>
-        <a href="{{ url_for('creer') }}">Creer</a>
-        <a href="{{ url_for('messagerie') }}">Messages</a>
-        <a href="{{ url_for('market') }}">Market</a>
-        <a href="{{ url_for('profil') }}">Profil</a>
+<body class="bg-dark text-white font-sans min-h-screen">
+    <!-- NAVBAR PRO -->
+    <nav class="sticky top-0 z-50 glass border-b border-white/10">
+        <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+            <a href="{{ url_for('accueil') if session.user_id else url_for('index') }}" class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center font-display text-black text-xl font-bold">M</div>
+                <span class="font-display text-2xl tracking-wider">MEET.<span class="text-primary">FOOT</span></span>
+            </a>
+            {% if session.user_id %}
+            <div class="flex items-center gap-1 md:gap-2">
+                <a href="{{ url_for('accueil') }}" class="p-2.5 hover:bg-white/10 rounded-xl transition"><i class="fa-solid fa-house"></i></a>
+                <a href="{{ url_for('market') }}" class="p-2.5 hover:bg-white/10 rounded-xl transition"><i class="fa-solid fa-store"></i></a>
+                <a href="{{ url_for('messagerie') }}" class="p-2.5 hover:bg-white/10 rounded-xl transition relative"><i class="fa-solid fa-paper-plane"></i></a>
+                <a href="{{ url_for('notifications') }}" class="p-2.5 hover:bg-white/10 rounded-xl transition"><i class="fa-solid fa-bell"></i></a>
+                <a href="{{ url_for('profil') }}" class="ml-2 w-8 h-8 bg-gradient-to-br from-primary to-green-600 rounded-full flex items-center justify-center font-bold text-black">{{ session.username[0].upper() }}</a>
+            </div>
+            {% else %}
+            <div class="flex gap-2">
+                <a href="{{ url_for('login') }}" class="px-4 py-2 text-sm hover:bg-white/10 rounded-full">Connexion</a>
+                <a href="{{ url_for('inscription_particulier') }}" class="px-5 py-2 bg-primary text-black font-bold rounded-full text-sm">S'inscrire</a>
+            </div>
+            {% endif %}
+        </div>
+    </nav>
+
+    <!-- FLASH MESSAGES -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="max-w-6xl mx-auto px-4 mt-4 space-y-2">
+        {% for category, message in messages %}
+          <div class="p-3 rounded-xl text-sm {% if category=='success' %}bg-primary/20 text-primary border border-primary/30{% elif category=='danger' %}bg-red-500/20 text-red-400 border border-red-500/30{% else %}bg-white/10 text-white border border-white/10{% endif %}">
+            {{ message }}
+          </div>
+        {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <!-- CONTENT -->
+    <main class="max-w-6xl mx-auto px-4 py-6">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- MOBILE TAB BAR -->
+    {% if session.user_id %}
+    <div class="md:hidden fixed bottom-0 left-0 right-0 glass border-t border-white/10 flex justify-around py-2 z-50">
+        <a href="{{ url_for('accueil') }}" class="p-3"><i class="fa-solid fa-house"></i></a>
+        <a href="{{ url_for('market') }}" class="p-3"><i class="fa-solid fa-store"></i></a>
+        <a href="{{ url_for('creer') }}" class="p-3"><div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-black"><i class="fa-solid fa-plus"></i></div></a>
+        <a href="{{ url_for('messagerie') }}" class="p-3"><i class="fa-solid fa-paper-plane"></i></a>
+        <a href="{{ url_for('profil') }}" class="p-3"><i class="fa-solid fa-user"></i></a>
     </div>
     {% endif %}
 </body>
