@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block contenu %}
+<h1>Inscription Club</h1>
+<form method="POST">
+<label>Nom du club</label><input name="nom_club" required>
+<label>Logo URL</label><input name="logo_url">
+<label>Discipline</label><select name="discipline" required><option>Football</option><option>Handball</option><option>Basketball</option></select>
+<label>Pays</label><input name="pays" required>
+<label>Ligue</label><input name="ligue">
+<label>Email</label><input type="email" name="email" required>
+<label>Mot de passe</label><input type="password" name="mot_de_passe" required>
+<button>S'inscrire</button>
+</form>
+{% endblock %}
