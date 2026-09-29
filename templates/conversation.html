@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block contenu %}
+<h1>{{ autre_nom }}</h1>
+{% for m in messages %}
+<div style="background:{% if m.expediteur_email==mon_email %}#dcf8c6{% else %}white{% endif %};padding:8px;margin:6px;border-radius:6px;">
+{% if m.type_message=="vocal" %}<audio controls src="{{ url_for('static', filename='audio/'+m.contenu) }}"></audio>{% else %}<p>{{ m.contenu }}</p>{% endif %}
+<small>{{ m.date_envoi }}</small>
+</div>
+{% endfor %}
+<form method="POST">
+<input name="contenu_texte" placeholder="Message..."><input type="hidden" name="audio_base64" id="audio_base64">
+<button>Envoyer</button>
+</form>
+<button onclick="startRec()">Enregistrer vocal</button>
+<script>
+let rec;let chunks=[];
+async function startRec(){
+let s=await navigator.mediaDevices.getUserMedia({audio:true});rec=new MediaRecorder(s);
+rec.ondataavailable=e=>chunks.push(e.data);
+rec.onstop=async()=>{
+let blob=new Blob(chunks,{type:'audio/webm'});let r=new FileReader();r.readAsDataURL(blob);
+r.onloadend=()=>{document.getElementById('audio_base64').value=r.result;document.forms[1].submit();}
+};chunks=[];rec.start();setTimeout(()=>rec.stop(),5000);
+}
+</script>
+{% endblock %}
