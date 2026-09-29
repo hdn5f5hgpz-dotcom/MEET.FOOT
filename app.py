@@ -1309,7 +1309,7 @@ def lister_annonces_market():
 
     {% else %}
         <p style="color:#c62828; font-weight:bold;">
-            Ton abonnement n'est pas à jour. Choisis un moyen de paiement
+            "Ton abonnement n'est pas à jour. Choisis un moyen de paiement"
             pour continuer à utiliser l'application.
         </p>
 
