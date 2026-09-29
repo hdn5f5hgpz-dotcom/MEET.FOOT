@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block contenu %}
+<h1>Market</h1>
+{% if peut_publier %}<a class="bouton" href="{{ url_for('market_publier') }}">Publier une annonce</a>{% endif %}<hr>
+{% for a in annonces %}
+<div style="background:white;padding:12px;margin-bottom:10px;border-radius:8px;">
+<b>{{ a.nom_affiche }}</b> - {{ a.categorie }}<br><small>{{ a.description }}</small>{% if a.prix %}<br><b>{{ a.prix }}</b>{% endif %}
+<br><a class="bouton" href="{{ url_for('conversation', autre_email=a.auteur_email) }}">Contacter</a>
+</div>
+{% endfor %}
+{% endblock %}
