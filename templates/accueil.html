@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block contenu %}
+<h1>Accueil</h1>
+<form method="POST">
+<input name="contenu_texte" placeholder="Quoi de neuf?">
+<input name="image_url" placeholder="Lien image (optionnel)">
+<button>Publier</button>
+</form>
+<hr>
+{% for post in posts %}
+<div style="background:white;padding:14px;border-radius:8px;margin-bottom:14px;">
+<b><a href="{{ url_for('visiter_profil', email_visite=post.auteur_email) }}">{{ post.auteur_nom }}</a></b><br>
+<small>{{ post.date_publication }} - {{ post.visibilite }}</small>
+{% if post.contenu_texte %}<p>{{ post.contenu_texte }}</p>{% endif %}
+{% if post.image_url %}<img src="{{ post.image_url }}" style="max-width:100%;border-radius:6px;">{% endif %}
+{% if post.fichier_media %}
+  {% if post.type_media == "video" %}<video controls style="max-width:100%;"><source src="{{ url_for('static', filename='uploads/'+post.fichier_media) }}"></video>
+  {% else %}<img src="{{ url_for('static', filename='uploads/'+post.fichier_media) }}" style="max-width:100%;">{% endif %}
+{% endif %}
+<form method="POST" action="{{ url_for('like', post_id=post.id) }}">
+<button style="background:{% if post.deja_like %}#1565c0{% else %}#888{% endif %};">J'aime ({{ post.nombre_likes }})</button>
+</form>
+</div>
+{% endfor %}
+{% endblock %}
