@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block contenu %}
+<h1>Nouveau message</h1>
+{% for c in contacts %}
+<div style="background:white;padding:10px;margin-bottom:8px;"><a href="{{ url_for('conversation', autre_email=c.email) }}">{{ c.nom }} ({{ c.type }})</a></div>
+{% endfor %}
+{% endblock %}
