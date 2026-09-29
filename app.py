@@ -36,10 +36,10 @@ def index():
     return '''
     <!doctype html>
     <html><head><meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Meet Foot Danané</title></head>
+    <title>Meet Foot </title></head>
     <body style="font-family:sans-serif;text-align:center;padding:30px;background:#0f172a;color:white">
-    <h1 style="font-size:32px">⚽ MEET FOOT DANANÉ</h1>
-    <p>Plateforme multi-sport de Danané</p>
+    <h1 style="font-size:32px">⚽ MEET FOOT</h1>
+    <p>Plateforme multi-sport</p>
     <div style="margin-top:30px">
     <a href="/login" style="background:#22c55e;color:white;padding:12px 24px;border-radius:8px;text-decoration:none;margin:5px;display:inline-block">Connexion</a>
     <a href="/inscription_particulier" style="background:#3b82f6;color:white;padding:12px 24px;border-radius:8px;text-decoration:none;margin:5px;display:inline-block">Inscription Joueur</a>
