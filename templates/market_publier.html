@@ -1,13 +1,15 @@
 {% extends "base.html" %}
-{% block contenu %}
-<h1>Publier sur Market</h1>
-<form method="POST" enctype="multipart/form-data">
-<label>Photo</label><input type="file" name="photo">
-{% if type_compte=="club" %}
-<input name="nom_joueur" placeholder="Nom joueur" required><input name="poste" placeholder="Poste" required><input name="age" placeholder="Age" required><input name="prix" placeholder="Prix">
-{% else %}
-<textarea name="texte_recherche" placeholder="Ce que tu recherches..." required></textarea>
-{% endif %}
-<button>Publier</button>
-</form>
+{% block content %}
+<div class="max-w-xl mx-auto bg-card border border-white/10 rounded-[2rem] p-8">
+    <h1 class="font-display text-3xl">VENDRE SUR MARKET</h1>
+    <form method="POST" class="mt-6 space-y-4">
+        <input name="titre" placeholder="Titre: ex: Crampons Nike Mercurial T42" class="w-full bg-zinc-900 border border-white/10 rounded-xl px-4 py-3 text-sm" required>
+        <textarea name="description" placeholder="Description complete..." class="w-full bg-zinc-900 border border-white/10 rounded-xl px-4 py-3 text-sm min-h-[120px]" required></textarea>
+        <div class="grid grid-cols-2 gap-3">
+            <input name="prix" type="number" placeholder="Prix en FCFA" class="bg-zinc-900 border border-white/10 rounded-xl px-4 py-3 text-sm">
+            <input name="image_url" placeholder="Lien image" class="bg-zinc-900 border border-white/10 rounded-xl px-4 py-3 text-sm">
+        </div>
+        <button class="w-full bg-primary text-black font-bold py-3.5 rounded-full">Publier l'annonce</button>
+    </form>
+</div>
 {% endblock %}
