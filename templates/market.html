@@ -1,19 +1,53 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="max-w-5xl mx-auto">
-    <div class="flex items-center justify-between mb-6">
-        <h1 class="font-display text-5xl">MARKET<span class="text-primary">.FOOT</span></h1>
-        <a href="{{ url_for('market_publier') }}" class="bg-primary text-black font-bold px-6 py-3 rounded-full text-sm"><i class="fa-solid fa-plus mr-2"></i>Vendre</a>
-    </div>
-    <div class="grid md:grid-cols-3 gap-4">
-        {% for item in items %}
-        <div class="bg-card border border-white/10 rounded-2xl overflow-hidden">
-            <div class="aspect-square bg-zinc-900">{% if item.image_url %}<img src="{{ item.image_url }}" class="w-full h-full object-cover">{% else %}<div class="w-full h-full flex items-center justify-center text-white/10 text-4xl"><i class="fa-solid fa-image"></i></div>{% endif %}</div>
-            <div class="p-4"><p class="font-bold">{{ item.titre }}</p><p class="text-sm text-white/50 line-clamp-2">{{ item.description }}</p><p class="text-primary font-bold mt-2">{% if item.prix %}{{ item.prix }} FCFA{% else %}Sur demande{% endif %}</p></div>
+<div class="max-w-6xl mx-auto">
+    <!-- HEADER MARKET -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
+        <div>
+            <h1 class="font-display text-5xl leading-none">MARKET<span class="text-[#00FF88]">.SPORT</span></h1>
+            <p class="text-white/50 text-sm mt-2">Trouve des joueurs, des clubs, des coachs. Danane et partout.</p>
         </div>
-        {% else %}
-        <div class="col-span-3 text-center py-16 border-dashed border-white/10 rounded-2xl text-white/30">Aucune annonce. Sois le premier a publier!</div>
-        {% endfor %}
+        <div class="flex gap-2">
+            <a href="{{ url_for('market') }}" class="px-4 py-2 rounded-full text-xs font-bold {% if not request.args.get('sport') %}bg-[#00FF88] text-black{% else %}bg-[#161616] border border-white/10 text-white/60{% endif %}">TOUS</a>
+            <a href="{{ url_for('market') }}?sport=foot" class="px-4 py-2 rounded-full text-xs font-bold flex items-center gap-1.5 {% if request.args.get('sport')=='foot' %}bg-[#00FF88] text-black{% else %}bg-[#161616] border border-white/10 text-white/60{% endif %}"><i class="fa-solid fa-futbol"></i> FOOT</a>
+            <a href="{{ url_for('market') }}?sport=basket" class="px-4 py-2 rounded-full text-xs font-bold flex items-center gap-1.5 {% if request.args.get('sport')=='basket' %}bg-[#00FF88] text-black{% else %}bg-[#161616] border border-white/10 text-white/60{% endif %}"><i class="fa-solid fa-basketball"></i> BASKET</a>
+            <a href="{{ url_for('market') }}?sport=handball" class="px-4 py-2 rounded-full text-xs font-bold flex items-center gap-1.5 {% if request.args.get('sport')=='handball' %}bg-[#00FF88] text-black{% else %}bg-[#161616] border border-white/10 text-white/60{% endif %}"><i class="fa-solid fa-baseball"></i> HAND</a>
+        </div>
     </div>
-</div>
-{% endblock %}
+
+    <!-- BARRE RECHERCHE + FILTRES -->
+    <div class="bg-[#161616] border border-white/10 rounded-2xl p-3 mb-6 flex flex-wrap gap-3 items-center">
+        <form class="flex-1 min-w-[200px] relative">
+            <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-white/30 text-xs"></i>
+            <input name="q" value="{{ request.args.get('q','') }}" placeholder="Recherche joueur, club, ville..." class="w-full bg-zinc-900 border border-white/10 rounded-full pl-10 pr-4 py-2.5 text-sm outline-none focus:border-[#00FF88]/30">
+        </form>
+        <select name="poste" class="bg-zinc-900 border border-white/10 rounded-full px-4 py-2.5 text-xs">
+            <option value="">Tous les postes</option>
+            <option>Attaquant</option>
+            <option>Milieu</option>
+            <option>Defenseur</option>
+            <option>Gardien</option>
+            <option>Meneur</option>
+            <option>Pivot</option>
+            <option>Ailier</option>
+        </select>
+        <select name="ville" class="bg-zinc-900 border border-white/10 rounded-full px-4 py-2.5 text-xs">
+            <option value="">Toutes villes</option>
+            <option>Danane</option>
+            <option>Abidjan</option>
+            <option>Man</option>
+            <option>Bouake</option>
+        </select>
+    </div>
+
+    <!-- GRILLE JOUEURS -->
+    <div class="grid md:grid-cols-3 gap-4">
+    {% for user in users %}
+        <div class="bg-[#161616] border border-white/10 rounded-[1.5rem] p-5 hover:border-[#00FF88]/20 transition group">
+            <div class="flex items-start justify-between mb-4">
+                <div class="flex gap-3">
+                    <div class="w-12 h-12 rounded-full bg-gradient-to-br from-zinc-700 to-zinc-800 flex items-center justify-center font-bold">{{ user.username[0].upper() }}</div>
+                    <div>
+                        <p class="font-bold text-sm leading-none">{{ user.username }}</p>
+                        <p class="text-xs text-white/40 mt-1">{{ user.poste if user.poste else 'Joueur' }} • {{ user.ville if user.ville else 'Danane' }}</p>
+                        {% if user.sport %}<span class="mt-1 inline-block px-2 py-0.5 rounded-full text-[10px] font-bold bg-white/10 border border-white/10">{{ user.sport|upper }}</span>{
