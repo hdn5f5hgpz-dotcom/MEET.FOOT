@@ -32,20 +32,19 @@ def load_user(user_id):
 def index():
     if current_user.is_authenticated:
         return redirect(url_for('accueil'))
-    # FIX: pas besoin de template, on affiche direct
     return '''
     <!doctype html>
     <html><head><meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Meet Foot </title></head>
-    <body style="font-family:sans-serif;text-align:center;padding:30px;background:#0f172a;color:white">
-    <h1 style="font-size:32px">⚽ MEET FOOT</h1>
-    <p>Plateforme multi-sport</p>
-    <div style="margin-top:30px">
-    <a href="/login" style="background:#22c55e;color:white;padding:12px 24px;border-radius:8px;text-decoration:none;margin:5px;display:inline-block">Connexion</a>
-    <a href="/inscription_particulier" style="background:#3b82f6;color:white;padding:12px 24px;border-radius:8px;text-decoration:none;margin:5px;display:inline-block">Inscription Joueur</a>
-    <a href="/inscription_club" style="background:#f59e0b;color:white;padding:12px 24px;border-radius:8px;text-decoration:none;margin:5px;display:inline-block">Club</a>
+    <title>Meet Foot</title></head>
+    <body style="margin:0;font-family:sans-serif;background:linear-gradient(135deg,#ff00aa,#7c3aed);min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;color:white">
+    <div style="padding:20px">
+    <h1 style="font-size:42px;font-weight:900;margin:0">⚽ MEET FOOT</h1>
+    <p style="font-size:18px;opacity:0.9;margin:16px 0 32px">Trouve ton match, ton équipe, ton terrain</p>
+    <div style="display:flex;flex-direction:column;gap:14px;max-width:320px;margin:0 auto">
+    <a href="/login" style="background:white;color:#c026d3;padding:16px;border-radius:30px;text-decoration:none;font-weight:700;font-size:18px">Connexion</a>
+    <a href="/inscription_particulier" style="background:rgba(0,0,0,0.25);border:2px solid white;color:white;padding:16px;border-radius:30px;text-decoration:none;font-weight:700;font-size:18px">Inscription</a>
     </div>
-    <p style="margin-top:40px;opacity:0.6">Site en ligne ✅</p>
+    </div>
     </body></html>
     '''
 
